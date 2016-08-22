@@ -4,10 +4,8 @@ from django import forms
 
 
 class Document(models.Model):
-    filename = models.CharField(max_length=100)
     docfile = models.FileField(upload_to='documents/')
 
 
 class UploadForm(forms.Form):
-    filename = forms.CharField(max_length=100)
     docfile = forms.FileField(label='Selecciona un archivo')

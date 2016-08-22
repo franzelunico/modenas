@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
 from .models import Document, UploadForm
-from openpyxl.writer.excel import save_virtual_workbook
 from openpyxl import load_workbook
 from conversor import Conversor
+import os
 # Create your views here.
 
 
@@ -13,14 +13,13 @@ def index_page(request):
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
             up_docfile = request.FILES['docfile'].__str__()
-            newdoc = Document(filename=request.POST['filename'],
-                              docfile=request.FILES['docfile'])
+            newdoc = Document(docfile=request.FILES['docfile'])
             newdoc.save(form)
             path = settings.MEDIA_ROOT
             path += '/documents/' + up_docfile
             # agregar datos
             wb = load_workbook(path)
-            distribucion = wb.get_sheet_by_name('distribucion')
+            distribucion = wb.get_sheet_by_name('Conversor')
             encabezado_a = ["", ""]
             encabezado_a += ["Billetes", "", "", "", ""]
             encabezado_a += ["Monedas", "", ""]
@@ -34,7 +33,7 @@ def index_page(request):
             encabezado += [0]
             distribucion.append(encabezado)  # Rows can also be appended
 
-            planilla = wb.get_sheet_by_name('planilla')
+            planilla = wb.get_sheet_by_name('Planilla')
 
             flag = True
             fila = 2
@@ -55,6 +54,7 @@ def index_page(request):
                         newvalue = res[i]+datos[i]
                         res[i] = newvalue
                     fila += 1
+            fila += 1
             distribucion.append(res)  # Rows can also be appended
             print fila
 
@@ -65,10 +65,24 @@ def index_page(request):
                 my_data = f.read()
             response = HttpResponse(my_data,
                                     content_type='application/vnd.ms-excel')
-            response['Content-Disposition'] = 'attachment; filename="res.xlsx"'
+            res_file = 'attachment; ' + 'filename="' + up_docfile + '"'
+            response['Content-Disposition'] = res_file
+            os.remove(path)
             return response
-            # return redirect("index")
     else:
         form = UploadForm()
     return render(request, 'index.html', {'form': form})
-    return None
+
+
+def ejemplo(request):
+    path = settings.MEDIA_ROOT
+    path += '/ejemplo/sample.xlsx'
+    my_data = ""
+    with open(path, 'r') as f:
+        my_data = f.read()
+    response = HttpResponse(my_data,
+                            content_type='application/vnd.ms-excel')
+    res_file = 'attachment; ' + 'filename="' + 'sample.xlsx' + '"'
+    response['Content-Disposition'] = res_file
+    print "Descargar"
+    return response

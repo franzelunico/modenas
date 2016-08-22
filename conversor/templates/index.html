@@ -1,11 +1,99 @@
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-            {{ form.as_p }}
-        <input type="submit" value="Submit">
-    </form>
-</body>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Conversor</title>
+		<meta name="description" content="Blueprint: Vertical Timeline" />
+		<meta name="keywords" content="timeline, vertical, layout, style, component, web development, template, responsive" />
+		<meta name="author" content="Codrops" />
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'prueba.css' %}" />
+		<link rel="shortcut icon" href="../favicon.ico">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
+        <script src="{% static 'js/modernizr.custom.js' %}"></script>
+	</head>
+	<body>
+		<div class="container">
+			<header class="clearfix">
+                <span> Franz Lopez Choque</span>
+				<h1>Distribución de moneda</h1>
+				<nav>
+					<a href="." class="icon-arrow-left" data-info="Previous">Franz Lopez Choque</a>
+					<a href="." class="icon-drop" data-info="Home">back to the Codrops article</a>
+				</nav>
+			</header>	
+			<div class="main">
+				<ul class="cbp_tmtimeline">
+					<li>
+						<time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>Antecedentes</span> <span>1</span></time>
+						<div class="cbp_tmicon cbp_tmicon-phone"></div>
+						<div class="cbp_tmlabel">
+							<h2>Antecedentes, Descripción del problema</h2>
+							<p>En la actualidad un gran porcentaje de las empresas usan planillas para pagar a sus trabajadores
+                            , las planillas pueden ser llenadas de diferentes maneras y presentarse en diferentes formatos.
+                            Atravez de las planillas se realizan los pagos al trabajor estos pueden ser depositos a un cuenta
+                            bancaria del trabajador o el pago podria realizarse en efectivo</p>
+                            <p>El realizar el pago en efectivo puede ser muy tedioso, si nos ponemos en caso de contar con 100 trabajadores
+                            con distinto liquido pagable, conseguir billetes y monedas para un exacta distribucion entre los trabajadores</p>
+                            <p>El presente trabajo fue una practica adicional para la materia costos industriales (Ing. Lima)</p>
+						</div>
+					</li>
+					<li>
+						<time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>Objetivo</span> <span>2</span></time>
+						<div class="cbp_tmicon cbp_tmicon-phone"></div>
+						<div class="cbp_tmlabel">
+							<h2>Objetivo General</h2>
+							<p>El objetivo general sera presentar una distribucion de billetes y monedas para el liquido pagable de cada trabajador</p>
+						</div>
+					</li>
+					<li>
+						<time class="cbp_tmtime" datetime="2013-04-16 21:30"><span>Implementación</span> <span>3</span></time>
+						<div class="cbp_tmicon cbp_tmicon-earth"></div>
+						<div class="cbp_tmlabel">
+							<h2>Implementación y despliegue</h2>
+							<p>Como base de lenguaje de programación se uso python2.7</p>
+							<p>Como framework django 1.0 </p>
+                            <p>Como servidor web nginx</p>
+                            <p>Para el control de versiones se uso git</p>
+						</div>
+					</li>
+					<li>
+						<time class="cbp_tmtime" datetime="2013-04-17 12:11"><span>Modo de uso</span> <span>4</span></time>
+						<div class="cbp_tmicon cbp_tmicon-screen"></div>
+						<div class="cbp_tmlabel">
+							<h2>Modo de uso</h2>
+                            <p>El archivo que subira debe presentar las siguientes caracteristicas</p>
+                            <ul>
+                                <li>El arhivo debe tener una extencion .xlsx ejemplo "prueba.xlsx"</li>
+                                <li>El nombre del archivo no debe tener espacios en blanco, caracters como "(" ó  ")"</li>
+                                <li>La hoja de calculo debe presentar dos pestañas</li>
+                                    <ul>
+                                        <li>La primera "Plantilla" en la cual estara el nombre y liquido pagable del trabajador</li>
+                                        <li>La segunda "Conversor" debe estar sin ningun contenido</li>
+                                    </ul>
+                                <li>Tenga en cuenta que los datos de conversion se reflejara en la pestaña Conversor</li>
+                                <li>Aqui le dejamos un archivo de ejemplo <a href="/ejemplo/">Descargar</a></li>
+                            </ul>
+                            <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                                    {{ form.as_p }}
+                                <input type="submit" value="Enviar">
+                            </form>
+						</div>
+					</li>
+					<li>
+						<time class="cbp_tmtime" datetime="2013-04-18 09:56"><span>Contacto</span> <span>5</span></time>
+						<div class="cbp_tmicon cbp_tmicon-phone"></div>
+						<div class="cbp_tmicon cbp_tmicon-mail"></div>
+						<div class="cbp_tmlabel">
+							<h2>Contacto</h2>
+							<p>Para contactarse con llame al (591) 69504113 (Bolivia).</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
 </html>
