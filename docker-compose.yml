@@ -1,0 +1,27 @@
+# crea una imagen de nombre    : dockerizingdjango_web
+# crea un contenedor de nombre : dockerizingdjango_web_1
+# para ejecutar un comando en el servicio web
+version: '2'
+services:
+    web:
+      restart: always
+      build:
+          context: ./ # refecia al DockerFile
+          dockerfile: Dockerfile-platform
+      expose:
+        # "8079:8000" # puerto HOST:CONTAINER
+        - "8000"
+      volumes:
+        - .:/code
+      entrypoint: 
+        - sh
+        - run.sh
+    nginx:
+      restart: always
+      build: 
+          context: ./ # refecia al DockerFile
+          dockerfile: Dockerfile-nginx
+      ports:
+        - "80:80"
+      links:
+        - web:web
