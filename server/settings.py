@@ -25,7 +25,7 @@ SECRET_KEY = 'zt6=!x18f_!(q(co8y9ye))oiu7b&1*zj^968wu743bhwa-vi='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.franzlopez.com',]
 
 
 # Application definition

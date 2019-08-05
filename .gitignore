@@ -2,3 +2,4 @@
 *.py[cod]
 media/documents/
 env/*
+.idea/
